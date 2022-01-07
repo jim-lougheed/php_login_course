@@ -8,7 +8,7 @@
     // Our config is below
     
     // Include the DB.php file
-    include_once "../php_login_course/inc/classes/DB.php";
+    include_once "C:/xampp/htdocs/php_login_course/inc/classes/DB.php";
 
     $con = DB::getConnection();
 ?>
