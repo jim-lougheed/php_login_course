@@ -18,7 +18,8 @@
     // Include the DB.php file
     include_once "C:/xampp/htdocs/php_login_course/inc/classes/DB.php";
     include_once "C:/xampp/htdocs/php_login_course/inc/classes/Filter.php";
-    include_once "C:/xampp/htdocs/php_login_course/inc/functions.php";
+    include_once "C:/xampp/htdocs/php_login_course/inc/classes/User.php";
+    include_once "C:/xampp/htdocs/php_login_course/inc/classes/Page.php";
 
     $con = DB::getConnection();
 ?>
