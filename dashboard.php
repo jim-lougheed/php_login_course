@@ -3,13 +3,24 @@
     // Allow the config
     define('__CONFIG__', true);
     // Require the config
-    require_once "inc/config.php"; 
-
-    
+    require_once "inc/config.php";     
     
     forceLogin();
     
-    
+    $user_id = $_SESSION['user_id'];
+    $getUserInfo = $con->prepare("SELECT email, reg_time FROM users WHERE user_id = :user_id LIMIT 1");
+    $getUserInfo->bindParam('user_id', $user_id, PDO::PARAM_INT);
+    $getUserInfo->execute();
+
+    if ($getUserInfo->rowCount() == 1) {
+        // User is found
+        $User = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+
+    } else {
+        // User is not signed in
+        header('Location: /php_login_course/logout.php'); exit;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +37,9 @@
 <body>
 
     <div class='uk-section uk-container'>
-        This is your dashbord. You are signed in as user <?php echo $_SESSION['user_id']?>!
+        <h2>Dashboard</h2>
+        <p>Hello, <?php echo $User['email']; ?> This is your dashbord. You are signed in as user <?php echo $user_id?>. You registered at <?php echo $User['reg_time'];?>!
+        <p><a href='/php_login_course/logout.php'>Logout</a></p>
     </div>
     
 </body>
